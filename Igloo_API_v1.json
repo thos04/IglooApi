@@ -1,0 +1,1010 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.1",
+		"title": "GESB Igloo_v1",
+		"description": "API Proxy for integration with Igloo JMS interface services",
+		"contact": {
+			"name": "GESB"
+		}
+	},
+	"host": "testsews.teliacompany.net:61171",
+	"basePath": "/v1/common/igloo",
+	"schemes": [
+		"http"
+	],
+	"consumes": [
+		"application/json"
+	],
+	"produces": [
+		"application/json"
+	],
+	"paths": {
+		"/service/engagement": {
+			"post": {
+				"operationId": "engagementAdd",
+				"summary": "Updates an engagement",
+				"description": "This API is used for creating engagements in Igloo",
+				"parameters": [
+					{
+						"name": "engagementAdd",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"EngagementRequest": {
+									"$ref": "#/definitions/engagementRequest"
+								}
+							}
+						}
+					}, {
+						"$ref": "#/parameters/country"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"SyncResponse": {
+									"$ref": "#/definitions/SyncResponse"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"503": {
+						"description": "Service Unavailable",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					}
+				}
+			},
+			"put": {
+				"operationId": "engagementChange",
+				"summary": "Updates an engagement",
+				"description": "This API is used for updating engagements in Igloo",
+				"parameters": [
+					{
+						"name": "engagementChange",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"EngagementRequest": {
+									"$ref": "#/definitions/engagementRequest"
+								}
+							}
+						}
+					}, {
+						"$ref": "#/parameters/country"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"SyncResponse": {
+									"$ref": "#/definitions/SyncResponse"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"503": {
+						"description": "Service Unavailable",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "engagementGetResponse",
+				"summary": "Updates an engagement",
+				"description": "This API is used for getting fetching responses regarding engagements in Igloo",
+				"parameters": [
+					{
+						"name": "sender",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "Backend system indicating which queue to fetch message from",
+						"enum": [
+							"dk_foton", "lt_middleware"
+						]
+					}, {
+						"name": "timeout",
+						"in": "query",
+						"required": true,
+						"type": "number",
+						"description": "Number of seconds that get operation should block while waiting for a response on JMs queue"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"engagementResponse": {
+									"$ref": "#/definitions/engagementResponse"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"503": {
+						"description": "Service Unavailable",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					}
+				}
+			}
+		},
+		"/service/engagementTrigger": {
+			"post": {
+				"operationId": "engagementShow",
+				"summary": "Send engagement information",
+				"description": "This API is used for syncing engagements with Igloo",
+				"parameters": [
+					{
+						"name": "engagementShow",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"EngagementRequest": {
+									"$ref": "#/definitions/engagementRequest"
+								}
+							}
+						}
+					}, {
+						"$ref": "#/parameters/country"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"SyncResponse": {
+									"$ref": "#/definitions/SyncResponse"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"503": {
+						"description": "Service Unavailable",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "engagementGetTrigger",
+				"summary": "Updates an engagement",
+				"description": "This API is used for getting fetching responses regarding engagements in Igloo",
+				"parameters": [
+					{
+						"name": "sender",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "Backend system indicating which queue to fetch message from",
+						"enum": [
+							"dk_foton", "lt_middleware"
+						]
+					}, {
+						"name": "timeout",
+						"in": "query",
+						"required": true,
+						"type": "number",
+						"description": "Number of seconds that get operation should block while waiting for a response on JMs queue"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"engagementResponse": {
+									"$ref": "#/definitions/engagementResponse"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"503": {
+						"description": "Service Unavailable",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					}
+				}
+			}
+		},
+		"/service/mediavoucher": {
+			"put": {
+				"operationId": "mediavoucherAdd",
+				"summary": "Adds a mediaVoucher to Igloo",
+				"description": "This API is used for adding a mediavoucher in Igloo",
+				"parameters": [
+					{
+						"name": "mediavoucherAdd",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"mediavoucherRequest": {
+									"$ref": "#/definitions/mediavoucherRequest"
+								}
+							}
+						}
+					}, {
+						"$ref": "#/parameters/country"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"SyncResponse": {
+									"$ref": "#/definitions/SyncResponse"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"503": {
+						"description": "Service Unavailable",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "mediavoucherGetResponse",
+				"summary": "Fetches MedaiVoucher responses",
+				"description": "This API is used for getting fetching responses regarding mediaVochers in Igloo",
+				"parameters": [
+					{
+						"name": "sender",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "Backend system indicating which queue to fetch message from",
+						"enum": [
+							"dk_foton", "lt_middleware"
+						]
+					}, {
+						"name": "timeout",
+						"in": "query",
+						"required": true,
+						"type": "number",
+						"description": "Number of seconds that get operation should block while waiting for a response on JMs queue"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"mediavoucherResponse": {
+									"$ref": "#/definitions/mediavoucherResponse"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"503": {
+						"description": "Service Unavailable",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					}
+				}
+			}
+		},
+		"/service/mediarentalCDR": {
+			"put": {
+				"operationId": "confirmMediaRentalCDR",
+				"summary": "Confirms a MediaRentalCDR to Igloo",
+				"description": "This API is used for adding a mediavoucher in Igloo",
+				"parameters": [
+					{
+						"name": "mediarentalCDRconfirm",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"mediarentalResponse": {
+									"$ref": "#/definitions/mediarentalResponse"
+								}
+							}
+						}
+					}, {
+						"$ref": "#/parameters/country"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"SyncResponse": {
+									"$ref": "#/definitions/SyncResponse"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"503": {
+						"description": "Service Unavailable",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "mediarentalGetOrder",
+				"summary": "Fetches MediaRentalOrder from Igloo",
+				"description": "This API is used for fetching mediaRentalOrder from Igloo",
+				"parameters": [
+					{
+						"name": "sender",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "Backend system indicating which queue to fetch message from",
+						"enum": [
+							"dk_foton", "lt_middleware"
+						]
+					}, {
+						"name": "timeout",
+						"in": "query",
+						"required": true,
+						"type": "number",
+						"description": "Number of seconds that get operation should block while waiting for a response on JMs queue"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"mediarentalOrder": {
+									"$ref": "#/definitions/mediarentalOrder"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					},
+					"503": {
+						"description": "Service Unavailable",
+						"schema": {
+							"$ref": "#/definitions/errorResponse"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"engagementRequest": {
+			"title": "Object containing request information for the new engagementRequest",
+			"type": "object",
+			"properties": {
+				"header": {
+					"$ref": "#/definitions/header"
+				},
+				"status": {
+					"type": "string"
+				},
+				"accountCreationDate": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				},
+				"username": {
+					"type": "string"
+				},
+				"accountType": {
+					"type": "string"
+				},
+				"orderNumber": {
+					"type": "string"
+				},
+				"area": {
+					"type": "string"
+				},
+				"masterAccount": {
+					"type": "string"
+				},
+				"TVAccountId": {
+					"type": "string"
+				},
+				"engagementType": {
+					"type": "string"
+				},
+				"network": {
+					"type": "string"
+				},
+				"HDTVEnabled": {
+					"type": "string"
+				},
+				"capacity": {
+					"type": "string"
+				},
+				"PVRStreams": {
+					"type": "string"
+				},
+				"serviceProfile": {
+					"type": "string"
+				},
+				"channels": {
+					"$ref": "#/definitions/channel"
+				},
+				"packages": {
+					"$ref": "#/definitions/package"
+				},
+				"svods": {
+					"$ref": "#/definitions/svod"
+				},
+				"pins": {
+					"$ref": "#/definitions/pin"
+				}
+			}
+		},
+		"channel": {
+			"title": "Object containing channnel information",
+			"type": "object",
+			"properties": {
+				"channelIds": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"startDate": {
+					"type": "string"
+				},
+				"endDate": {
+					"type": "string"
+				}
+			}
+		},
+		"package": {
+			"title": "Object containing package information",
+			"type": "object",
+			"properties": {
+				"packageIds": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"svod": {
+			"title": "Object containing svod information",
+			"type": "object",
+			"properties": {
+				"svodIds": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"startDate": {
+					"type": "string"
+				},
+				"endDate": {
+					"type": "string"
+				}
+			}
+		},
+		"pin": {
+			"title": "Object containing pins information",
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"pin1": {
+						"type": "string"
+					},
+					"pin2": {
+						"type": "string"
+					},
+					"pin3": {
+						"type": "string"
+					},
+					"pin4": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"SyncResponse": {
+			"title": "Object containing sync response information when placing a request to Igloo",
+			"type": "object",
+			"properties": {
+				"statusCode": {
+					"type": "string"
+				},
+				"statusMessage": {
+					"type": "string"
+				},
+				"exception": {
+					"$ref": "#/definitions/exceptionSchema"
+				}
+			}
+		},
+		"engagementResponse": {
+			"title": "Object containing fetched response from Igloo engagement operation",
+			"type": "object",
+			"properties": {
+				"header": {
+					"$ref": "#/definitions/header"
+				},
+				"lifeCycleStatusCode": {
+					"type": "string"
+				},
+				"referenceMessageId": {
+					"type": "string"
+				},
+				"orderReferenceMessageId": {
+					"type": "string"
+				},
+				"errorCode": {
+					"type": "string"
+				},
+				"errorDescription": {
+					"type": "string"
+				},
+				"node": {
+					"type": "string"
+				},
+				"reasonCode": {
+					"type": "string"
+				},
+				"exception": {
+					"$ref": "#/definitions/exceptionSchema"
+				}
+			}
+		},
+		"mediavoucherResponse": {
+			"title": "Object containing fetched response from Igloo mediaVoucher operation",
+			"type": "object",
+			"properties": {
+				"header": {
+					"$ref": "#/definitions/header"
+				},
+				"lifeCycleStatusCode": {
+					"type": "string"
+				},
+				"referenceMessageId": {
+					"type": "string"
+				},
+				"orderReferenceMessageId": {
+					"type": "string"
+				},
+				"errorCode": {
+					"type": "string"
+				},
+				"errorDescription": {
+					"type": "string"
+				},
+				"node": {
+					"type": "string"
+				},
+				"reasonCode": {
+					"type": "string"
+				},
+				"exception": {
+					"$ref": "#/definitions/exceptionSchema"
+				}
+			}
+		},
+		"mediarentalResponse": {
+			"title": "Object containing fetched response from Igloo mediaVoucher operation",
+			"type": "object",
+			"properties": {
+				"header": {
+					"$ref": "#/definitions/header"
+				},
+				"lifeCycleStatusCode": {
+					"type": "string"
+				},
+				"referenceMessageId": {
+					"type": "string"
+				},
+				"orderReferenceMessageId": {
+					"type": "string"
+				},
+				"errorCode": {
+					"type": "string"
+				},
+				"errorDescription": {
+					"type": "string"
+				},
+				"node": {
+					"type": "string"
+				},
+				"reasonCode": {
+					"type": "string"
+				}
+			}
+		},
+		"mediarentalOrder": {
+			"title": "Object containing media rental order information",
+			"type": "object",
+			"properties": {
+				"header": {
+					"$ref": "#/definitions/header"
+				},
+				"account": {
+					"$ref": "#/definitions/account"
+				},
+				"content": {
+					"$ref": "#/definitions/content"
+				},
+				"invoiceElements": {
+					"$ref": "#/definitions/invoiceElements"
+				},
+				"system": {
+					"$ref": "#/definitions/system"
+				}
+			}
+		},
+		"account": {
+			"title": "Object containing media rental order account information",
+			"type": "object",
+			"properties": {
+				"username": {
+					"type": "string"
+				}
+			}
+		},
+		"content": {
+			"title": "Object containing media rental order content information",
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"category": {
+					"type": "string"
+				},
+				"store": {
+					"type": "string"
+				},
+				"provider": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string"
+				},
+				"vat": {
+					"type": "string"
+				},
+				"providerId": {
+					"type": "string"
+				},
+				"MediaId": {
+					"type": "string"
+				}
+			}
+		},
+		"invoiceElements": {
+			"title": "Object containing media rental order invoiceElements information",
+			"type": "object",
+			"properties": {
+				"price": {
+					"type": "string"
+				},
+				"providerPrice": {
+					"type": "string"
+				},
+				"itemPrice": {
+					"type": "string"
+				},
+				"startTime": {
+					"type": "string"
+				},
+				"endTime": {
+					"type": "string"
+				},
+				"currency": {
+					"type": "string"
+				}
+			}
+		},
+		"system": {
+			"title": "Object containing media rental order system information",
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"mediaPrepaidId": {
+					"type": "string"
+				}
+			}
+		},
+		"header": {
+			"title": "Object containing message header information",
+			"type": "object",
+			"properties": {
+				"sender": {
+					"type": "string"
+				},
+				"timestamp": {
+					"type": "string"
+				},
+				"id": {
+					"type": "string"
+				},
+				"confirmationCode": {
+					"type": "string"
+				},
+				"messageType": {
+					"type": "string"
+				}
+			}
+		},
+		"mediavoucherRequest": {
+			"title": "Object containing request information for mediaVoucher operations",
+			"type": "object",
+			"properties": {
+				"header": {
+					"$ref": "#/definitions/header"
+				},
+				"mediaPrepaidId": {
+					"type": "string"
+				},
+				"quantity": {
+					"type": "string"
+				},
+				"userName": {
+					"type": "string"
+				},
+				"contentDefinitionID": {
+					"type": "string"
+				},
+				"startTime": {
+					"type": "string"
+				},
+				"endTime": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string"
+				},
+				"mediaPrepaidStatus": {
+					"type": "string"
+				},
+				"monthlyResetQuantity": {
+					"type": "string"
+				}
+			}
+		},
+		"exceptionSchema": {
+			"title": "Optional Object containing business error response information",
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string"
+				},
+				"detailedDescription": {
+					"type": "string"
+				}
+			}
+		},
+		"errorResponse": {
+			"title": "Object containing error response information",
+			"type": "object",
+			"properties": {
+				"error": {
+					"$ref": "#/definitions/error"
+				}
+			}
+		},
+		"error": {
+			"title": "Object containing error information",
+			"type": "object",
+			"properties": {
+				"code": {
+					"description": "Error code",
+					"type": "integer",
+					"format": "int64"
+				},
+				"message": {
+					"description": "Error description",
+					"type": "string"
+				}
+			},
+			"required": [
+				"code", "message"
+			]
+		}
+	}
+}
